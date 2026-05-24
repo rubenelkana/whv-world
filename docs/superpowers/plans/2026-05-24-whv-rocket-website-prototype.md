@@ -14,35 +14,200 @@
 
 ---
 
-## Task 1: Scaffold Next.js Project
+## Task 1: Scaffold Next.js Project (Manual)
 
 **Files:**
 - Create: `package.json`, `tsconfig.json`, `next.config.mjs`, `next-env.d.ts`, `postcss.config.mjs`, `tailwind.config.ts`, `app/layout.tsx`, `app/page.tsx`, `app/globals.css`
 
-- [ ] **Step 1: Create Next.js project in current directory**
+We scaffold manually (instead of `create-next-app`) because the project directory already contains `docs/`, `context/`, `.gitignore`, and `.git/` — `create-next-app .` would conflict. Manual scaffold avoids those problems and gives us exactly the structure we want.
 
-Run from `/Users/rubenelkana/Documents/Projects/A/whv-project`:
+- [ ] **Step 1: Create package.json**
 
-```bash
-npx create-next-app@14 . --typescript --tailwind --app --eslint --src-dir=false --import-alias="@/*" --use-npm --no-turbopack
+Create `package.json`:
+
+```json
+{
+  "name": "whv-world",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.15",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5"
+  }
+}
 ```
 
-When prompted: confirm overwrite is `n` for `.gitignore` (we already have one). If it offers to install in current directory and ask "Would you like to continue?", press `y`.
+- [ ] **Step 2: Create tsconfig.json**
 
-Expected: creates `package.json`, `tsconfig.json`, `next.config.mjs`, `postcss.config.mjs`, `tailwind.config.ts`, `app/` directory with `layout.tsx`, `page.tsx`, `globals.css`.
+Create `tsconfig.json`:
 
-- [ ] **Step 2: Verify dev server starts**
+```json
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": { "@/*": ["./*"] }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+
+- [ ] **Step 3: Create next.config.mjs**
+
+Create `next.config.mjs`:
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+
+export default nextConfig;
+```
+
+- [ ] **Step 4: Create next-env.d.ts**
+
+Create `next-env.d.ts`:
+
+```ts
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/basic-features/typescript for more information.
+```
+
+- [ ] **Step 5: Create postcss.config.mjs**
+
+Create `postcss.config.mjs`:
+
+```js
+const config = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
+export default config;
+```
+
+- [ ] **Step 6: Create minimal tailwind.config.ts (full theme comes in Task 2)**
+
+Create `tailwind.config.ts`:
+
+```ts
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+
+export default config;
+```
+
+- [ ] **Step 7: Create app/layout.tsx (placeholder — full version in Task 2)**
+
+Create `app/layout.tsx`:
+
+```tsx
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "WHV World",
+  description: "Find jobs, accommodation, and a car for your working holiday in Australia",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+- [ ] **Step 8: Create app/page.tsx (placeholder)**
+
+Create `app/page.tsx`:
+
+```tsx
+export default function Home() {
+  return <main className="p-10">WHV World scaffold OK</main>;
+}
+```
+
+- [ ] **Step 9: Create app/globals.css**
+
+Create `app/globals.css`:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+- [ ] **Step 10: Install dependencies**
+
+```bash
+npm install
+```
+
+Expected: completes with `node_modules/` created, no errors.
+
+- [ ] **Step 11: Verify dev server starts**
 
 ```bash
 npm run dev
 ```
 
-Expected: server starts on http://localhost:3000, default Next.js page loads. Stop with Ctrl+C.
+Expected: server starts on http://localhost:3000. Open browser, page shows "WHV World scaffold OK". Stop with Ctrl+C.
 
-- [ ] **Step 3: Commit scaffold**
+- [ ] **Step 12: Commit scaffold**
 
 ```bash
-git add .
+git add package.json package-lock.json tsconfig.json next.config.mjs next-env.d.ts postcss.config.mjs tailwind.config.ts app/
 git commit -m "chore: scaffold Next.js 14 project with TypeScript and Tailwind"
 ```
 
