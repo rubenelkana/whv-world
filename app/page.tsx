@@ -1,3 +1,10 @@
+import { Nav } from "@/components/nav";
+
 export default function Home() {
-  return <main className="p-10">WHV World scaffold OK</main>;
+  return (
+    <main>
+      <Nav />
+      <div className="p-10">Nav test</div>
+    </main>
+  );
 }
