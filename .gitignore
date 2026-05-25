@@ -22,3 +22,7 @@ yarn-error.log*
 
 # Vercel
 .vercel
+
+# Confidential source material (business plan, etc.)
+context/
+
