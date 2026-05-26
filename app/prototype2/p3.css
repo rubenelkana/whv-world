@@ -1,0 +1,77 @@
+/* Scoped base styles for the prototype2 consumer hub.
+   Only applies within `.p3-root` so it cannot leak into the existing prototypes. */
+
+.p3-root {
+  font-feature-settings: "ss01", "ss02";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.p3-root ::selection {
+  background: rgba(37, 99, 235, 0.18);
+  color: #0b1220;
+}
+
+.p3-root *:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Hero gradient: electric blue mesh on warm white. */
+.p3-hero-mesh {
+  background:
+    radial-gradient(80% 60% at 0% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 55%),
+    radial-gradient(70% 60% at 100% 0%, rgba(20, 184, 166, 0.18) 0%, transparent 60%),
+    radial-gradient(60% 50% at 30% 100%, rgba(251, 113, 133, 0.14) 0%, transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+}
+
+/* Soft mesh used behind home greeting. */
+.p3-soft-mesh {
+  background:
+    radial-gradient(70% 60% at 100% 0%, rgba(37, 99, 235, 0.10) 0%, transparent 60%),
+    radial-gradient(60% 50% at 0% 100%, rgba(20, 184, 166, 0.10) 0%, transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
+}
+
+/* Dot pattern used on signup splash. */
+.p3-dot-grid {
+  background-image: radial-gradient(rgba(11, 18, 32, 0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Subtle shimmer on featured cards (no animation — just an ambient look). */
+.p3-shimmer {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.5) 40%,
+      rgba(255, 255, 255, 0.85) 100%
+    ),
+    linear-gradient(135deg, #dbeafe 0%, #f5f9ff 100%);
+}
+
+/* App-like tile press feedback. */
+.p3-root .p3-tile-press {
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.p3-root .p3-tile-press:active {
+  transform: scale(0.96);
+}
+
+/* Scrollbar polish. */
+.p3-root .p3-scroll::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.p3-root .p3-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+.p3-root .p3-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
